@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.8x8.www</groupId>
+    <artifactId>pa-performance-testing</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>pa-performance-testing</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maxUsers>5</maxUsers>
+        <testScenario>DetailedReportSorting.jmx</testScenario>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <!-- Generate JMeter configuration -->
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <!-- Run JMeter tests -->
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                    <!-- Fail build on errors in test -->
+                    <execution>
+                        <id>jmeter-check-results</id>
+                        <goals>
+                            <goal>results</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <propertiesUser>
+                        <concurrentUsers>${maxUsers}</concurrentUsers>
+                        <duration>30</duration>
+                    </propertiesUser>
+                    <testFilesIncluded>
+                        <jMeterTestFile>${testScenario}</jMeterTestFile>
+                    </testFilesIncluded>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

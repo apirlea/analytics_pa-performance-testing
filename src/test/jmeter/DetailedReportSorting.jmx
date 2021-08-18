@@ -1,0 +1,1705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="DetailedReportSorting" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="baseURL" elementType="Argument">
+            <stringProp name="Argument.name">baseURL</stringProp>
+            <stringProp name="Argument.value">analytics-demo.8x8.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="session" elementType="Argument">
+            <stringProp name="Argument.name">session</stringProp>
+            <stringProp name="Argument.value">04acd5a1-caed-43d0-a2a1-543dabdd10ae</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="timezone" elementType="Argument">
+            <stringProp name="Argument.name">timezone</stringProp>
+            <stringProp name="Argument.value">America/Los_Angeles</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="xsrfToken" elementType="Argument">
+            <stringProp name="Argument.name">xsrfToken</stringProp>
+            <stringProp name="Argument.value">test</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="testConfigurationPath" elementType="Argument">
+            <stringProp name="Argument.name">testConfigurationPath</stringProp>
+            <stringProp name="Argument.value">C:\Work\PlatformAnalytics\Performance testing\v2.4.0\CDR\TestConfiguration.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="concurrentUsers" elementType="Argument">
+            <stringProp name="Argument.name">concurrentUsers</stringProp>
+            <stringProp name="Argument.value">${__P(concurrentUsers,10)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="duration" elementType="Argument">
+            <stringProp name="Argument.name">duration</stringProp>
+            <stringProp name="Argument.value">${__P(duration,60)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="DetailedReportSortingThreadGroup" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${concurrentUsers}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time"></stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${duration}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">content-type</stringProp>
+              <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">accept</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-xsrf-token</stringProp>
+              <stringProp name="Header.value">${xsrfToken}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies">
+            <elementProp name="SESSION" elementType="Cookie" testname="SESSION">
+              <stringProp name="Cookie.value">${session}</stringProp>
+              <stringProp name="Cookie.domain">${baseURL}</stringProp>
+              <stringProp name="Cookie.path"></stringProp>
+              <boolProp name="Cookie.secure">false</boolProp>
+              <longProp name="Cookie.expires">0</longProp>
+              <boolProp name="Cookie.path_specified">true</boolProp>
+              <boolProp name="Cookie.domain_specified">true</boolProp>
+            </elementProp>
+            <elementProp name="XSRF-TOKEN" elementType="Cookie" testname="XSRF-TOKEN">
+              <stringProp name="Cookie.value">${xsrfToken}</stringProp>
+              <stringProp name="Cookie.domain">${baseURL}</stringProp>
+              <stringProp name="Cookie.path"></stringProp>
+              <boolProp name="Cookie.secure">false</boolProp>
+              <longProp name="Cookie.expires">0</longProp>
+              <boolProp name="Cookie.path_specified">true</boolProp>
+              <boolProp name="Cookie.domain_specified">true</boolProp>
+            </elementProp>
+          </collectionProp>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportDefaultSortingByTimeRequest" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;TIMESTAMP&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-details</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByQueueNameRequest" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;QUEUE_NAME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-details</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByQueueIDRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;QUEUE_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByChannelRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CHANNEL_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByTypeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;INT_TYPE&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByLabelsRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;INT_LABELS&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOriginationRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;ORIGINATION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByDestinationRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;DESTINATION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByCustomerNameRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CUSTOMER_NAME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByCaseNumberRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CASE_NUMBER&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByCaseFollowUpRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CASE_FOLLOW_UP&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByMediaTypeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;MEDIA_TYPE&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByDirectionRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;DIRECTION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByCreationTimeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CREATION_TIME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByFinishedTimeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;FINISHED_TIME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByIvrTreatmentTimeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;IVR_TREATMENT_DURATION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneCodeListRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_LIST_NAME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneCodeListIDRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_LIST_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneCodeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_ITEM_TEXT&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneCodeTextRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_ITEM_REPORT_TEXT&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneShortCodeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_ITEM_SHORT_CODE&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOutboundPhoneCodeIDRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;OUTBOUND_CODE_ITEM_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByAssignNumberRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_ASSIGN_NUMBER&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByParticipantTypeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_TYPE&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByParticipantNameRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_NAME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByParticipantIdRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOfferTimeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_OFFER_TIME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByOfferActionRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_OFFER_ACTION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByHandlingDurationRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_HANDLING_DURATION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByWrapupDurationRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_WRAP_UP_DURATION&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByWrapupEndTimeRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;PARTICIPANT_WRAP_UP_END_TIME&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByConsultationEstablishedRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CONSULTATIONS_ESTABLISHED&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByConferencesEstablishedRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;CONFERENCES_ESTABLISHED&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByTransactionIDRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;TRANSACTION_ID&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DetailedReportSortedByAgentNotesRequest" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+   &quot;from&quot;:0,&#xd;
+   &quot;size&quot;:40,&#xd;
+   &quot;dateRange&quot;:{&#xd;
+      &quot;end&quot;:&quot;${endDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;start&quot;:&quot;${startDate}T00:00:00.000Z&quot;,&#xd;
+      &quot;type&quot;:&quot;CUSTOM&quot;&#xd;
+   },&#xd;
+   &quot;intraDayEndTime&quot;:&quot;${intraDayEndTime}&quot;,&#xd;
+   &quot;intraDayStartTime&quot;:&quot;${intraDayStartTime}&quot;,&#xd;
+   &quot;metrics&quot;:[${metrics}],&#xd;
+   &quot;searchQuery&quot;:[],&#xd;
+   &quot;sort&quot;:{&#xd;
+      &quot;metric&quot;:&quot;AGENT_NOTES&quot;,&#xd;
+      &quot;order&quot;:&quot;${sortOption}&quot;&#xd;
+   },&#xd;
+   &quot;timezone&quot;:&quot;${timezone}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${baseURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/detailed-reports/data/interaction-detailed-reports</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="ReadTestConfiguration" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">${testConfigurationPath}</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <boolProp name="quotedData">true</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames"></stringProp>
+      </CSVDataSet>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
